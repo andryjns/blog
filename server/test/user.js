@@ -57,7 +57,7 @@ describe('User', function () {
                     expect(res.body.data).to.be.a('object')
                     expect(res.body.data).to.have.property('email').with.lengthOf(16)
                     expect(res.body.data).to.have.property('password')
-                    expect(res.body.data.name).to.equal('Renaldy')
+                    expect(res.body.data.name).to.equal('andry')
                     done()
                 })
         })
