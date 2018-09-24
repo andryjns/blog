@@ -9,28 +9,16 @@ chai.use(chaiHttp)
 
 describe('User', function () {
 
-    var tempToken = ''
     beforeEach(function (done) {
         User.create({
                 name: 'admin',
                 email: 'admin@mail.com',
                 password: 'admin'
             })
-            .then(function (user) {
-                jwt.sign({
-                    id: user._id,
-                    name: user.name,
-                    email: user.email
-                }, process.env.JWT_KEY, function (err, token) {
-                    if (!err) {
-                        tempToken = token
-                        done()
-                    } else {
-                        console.log(err)
-                    }
-                })
+            .then(function (res){
+                done()
             })
-            .catch(err => {
+            .catch(function (err){
                 console.log(err)
             })
     });
@@ -44,7 +32,7 @@ describe('User', function () {
     describe('User', function () {
         it('POST / should return the created user', function (done) {
             chai.request(app)
-                .post('users/register')
+                .post('/users/register')
                 .type('form')
                 .send({
                     name: 'andry',
@@ -52,9 +40,10 @@ describe('User', function () {
                     password: 'andry'
                 })
                 .end(function (err, res) {
+                    console.log("test",res.body)
                     expect(res).to.have.status(201)
                     expect(res.body.data).to.be.a('object')
-                    expect(res.body.data).to.have.property('email').with.lengthOf(16)
+                    expect(res.body.data).to.have.property('email')
                     expect(res.body.data).to.have.property('password')
                     expect(res.body.data.name).to.equal('andry')
                     done()
@@ -63,7 +52,7 @@ describe('User', function () {
     })
 
     describe('User', function() {
-        it('POST / should return an object with token, user name, and user email', function(done) {
+        it('POST / should return an object with token', function(done) {
           chai.request(app)
             .post('/users/login')
             .type('form')
@@ -74,12 +63,10 @@ describe('User', function () {
             .end(function(err, res) {
               expect(res).to.have.status(200)
               expect(res.body).to.be.a('object')
-              expect(res.body).to.have.property('email').with.lengthOf(14)
               expect(res.body).to.have.property('token')
-              expect(res.body.user).to.equal('admin')
               done()
             })
         })
-      })
+    })
 
 })

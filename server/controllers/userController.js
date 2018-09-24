@@ -5,27 +5,27 @@ const bcrypt = require('bcryptjs')
 module.exports = {
 
     register: function (req, res) {
-        console.log(req.body)
+
         const newUser = new User({
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
         })
 
-        newUser.save(function (err) {
-            console.log(newUser)
+        newUser.save(function (err, data) {
 
             if (!err) {
                 res.status(201).json({
-                    "success": true,
-                    "message": `Account ${req.body.name} registered`
+                    success: true,
+                    message: `Account ${req.body.name} registered`,
+                    data: data
                 })
             } else {
                 res.status(500).json({
                     msg: err.message
                 })
             }
-        });
+        })
     },
 
 
@@ -41,27 +41,27 @@ module.exports = {
                 })
             } else if (data === null || data === undefined) {
                 res.status(404).json({
-                    msg: "Not a valid email or password"
+                    msg: "Not a valid email"
                 })
             } else {
                 let isPasswordValid = bcrypt.compareSync(req.body.password, data.password);
                 if (isPasswordValid) {
                     jwt.sign({
-                        email: data.email,
-                        password: data.password
+                        _id: data._id,
+                        name: data.name,
+                        email: data.email,                       
                     }, process.env.JWT_SECRET, function (err, token) {
-                        res.status(201).json({
-                            token: token
+                        console.log(token)
+                        res.status(200).json({
+                            token:token
                         })
-                    });
+                    })
                 } else {
                     res.status(403).json({
                         msg: "username/pass invalid"
                     })
                 }
-
             }
         })
     },
-
 }

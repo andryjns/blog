@@ -5,16 +5,15 @@ const user = require('./../models/user')
 function isLogin(req,res,next){
     jwt.verify(req.headers.access_token, process.env.JWT_SECRET, function(err, decoded) {
         console.log(decoded);
-        
+
         user.findOne({
             _id : decoded._id,
             name : decoded.name,
-            email : decoded.email,    
-            password : decoded.password  
+            email : decoded.email
         })
         .then(data=>{
             if(data!==null||data!==undefined){
-                req.decoded = decoded;
+                req.decoded = data;
                 next();
             }
             else{

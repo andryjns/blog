@@ -3,12 +3,15 @@ const Schema = mongoose.Schema
 
 const articleSchema = new Schema({
   title: String,
-  author: String,
-  content: String
-  // user: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'User'
-  // }
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
+  content: String,
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Comment',
+  }]
 }, {
   timestamps: true
 });

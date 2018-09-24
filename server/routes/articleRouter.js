@@ -7,8 +7,9 @@ const isLogin= require ('./../middlewares/isLogin')
 
 router.post('/create', isLogin,articleController.createNew)
 router.get('/display', articleController.findAll)
-router.post('/update/:id', isLogin, articleController.updateOne)
-router.delete('delete/:id', isLogin,articleController.deleteOne)
+router.get('/display/:id', articleController.showOne)
+router.put('/update', isLogin, articleController.updateOne)
+router.delete('/delete', isLogin,articleController.deleteOne)
 
 
 module.exports = router
