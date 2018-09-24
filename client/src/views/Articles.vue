@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import LeftColumn from '@/components/LeftColumn.vue'
+import LeftColumn from '@/components/sideBar.vue'
 
 export default {
   name: 'articles',

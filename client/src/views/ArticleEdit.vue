@@ -34,7 +34,7 @@ export default {
       let token = localStorage.getItem('token')
       axios({
         method: 'put',
-        url: `http://localhost:3000/articles/update`,
+        url: `http://35.198.233.133/articles/update`,
         headers: {
           token: token
         },
@@ -57,7 +57,7 @@ export default {
     let self = this
     axios({
       method: 'get',
-      url: `http://localhost:3000/articles/display/${this.id}`
+      url: `http://35.198.233.133/articles/display/${this.id}`
     })
       .then(article => {
         self.titleEdit = article.data.data.title

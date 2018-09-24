@@ -56,7 +56,7 @@
           let self = this
           axios({
               method: 'post',
-              url: 'http://localhost:3000/users/register',
+              url: 'http://35.198.233.133/users/register',
               data: {
                 name: this.nameRegister,
                 email: this.emailRegister,

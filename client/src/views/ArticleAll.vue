@@ -30,7 +30,7 @@
       let self = this
       axios({
           method: 'get',
-          url: 'http://localhost:3000/articles/display',
+          url: 'http://35.198.233.133/articles/display',
         })
         .then(articles => {
           articles.data.data.forEach(article => {

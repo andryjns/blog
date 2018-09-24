@@ -35,7 +35,7 @@ export default {
       console.log(this.titleInput)
       axios({
         method: 'post',
-        url: 'http://localhost:3000/articles/create',
+        url: 'http://35.198.233.133/articles/create',
         headers: {
           token: token
         },

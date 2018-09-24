@@ -62,7 +62,7 @@ export default {
       let self = this
       axios({
         method: 'post',
-        url: 'http://localhost:3000/comments/create',
+        url: 'http://35.198.233.133/comments/create',
         headers: {
           token: token
         },
@@ -83,7 +83,7 @@ export default {
       let self = this
       axios({
         method: 'get',
-        url: `http://localhost:3000/articles/display/${this.id}`
+        url: `http://35.198.233.133/articles/display/${this.id}`
       })
         .then(article => {
           self.currentArticle = article.data.data
@@ -115,7 +115,7 @@ export default {
       let token = localStorage.getItem('token')
       axios({
         method: 'delete',
-        url: `http://localhost:3000/articles/delete`,
+        url: `http://35.198.233.133/articles/delete`,
         headers: {
           token: token
         },
@@ -137,7 +137,7 @@ export default {
       let token = localStorage.getItem('token')
       axios({
         method: 'delete',
-        url: `http://localhost:3000/comments/delete`,
+        url: `http://35.198.233.133/comments/delete`,
         headers: {
           token: token
         },
@@ -157,7 +157,7 @@ export default {
     let self = this
     axios({
       method: 'get',
-      url: `http://localhost:3000/articles/display/${this.id}`
+      url: `http://35.198.233.133/articles/display/${this.id}`
     })
       .then(article => {
         self.currentArticle = article.data.data
@@ -177,7 +177,7 @@ export default {
       let self = this
       axios({
         method: 'get',
-        url: `http://localhost:3000/articles/display/${this.id}`
+        url: `http://35.198.233.133/articles/display/${this.id}`
       })
         .then(article => {
           self.currentArticle = article.data.data
