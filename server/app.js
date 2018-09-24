@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
 if (process.env.NODE_ENV === 'test') {
   var url = process.env.DB_MONGO_TEST
 } else {
-  var url = process.env.DB_MONGO
+  var url = process.env.DB_MONGO_MLAB
 }
 
 mongoose.connect(url)
